@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="text">hello world</h1>
+    <button id="btn">复制文字</button>
+    <script>
+    function copy(str) {
+        let save = function (e) {
+            e.clipboardData.setData('text/plain', str);//下面会说到clipboardData对象
+            e.preventDefault();//阻止默认行为
+        }
+        document.addEventListener('copy', save);
+        document.execCommand("copy");//使文档处于可编辑状态，否则无效
+    }
+    document.getElementById('btn').addEventListener('click', function () {
+        copy(document.getElementById('text').innerText);
+        alert('复制成功')  //提示，可删掉
+    })
+    </script>
+</body>
+</html>
